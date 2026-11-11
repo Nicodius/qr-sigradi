@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo a la sesión de SiGraDi...</title>
+    <script>
+        function redirigir() {
+            const ahora = new Date();
+            const hora = ahora.getHours(); 
+            const minutos = ahora.getMinutes(); 
+
+            // Verificamos si son las 21:00 horas (9 PM)
+            if (hora === 21) {
+                if (minutos >= 0 && minutos < 5) {
+                    // De 21:00 a 21:04
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=5";
+                } 
+                else if (minutos >= 5 && minutos < 10) {
+                    // De 21:05 a 21:09
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=13";
+                } 
+                else if (minutos >= 10 && minutos < 15) {
+                    // De 21:10 a 21:14
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=7";
+                } 
+                else {
+                    // Si se escanea a las 21:15 o más tarde
+                    window.location.href = "https://sigradi.org/"; 
+                }
+            } 
+            else {
+                // Si se escanea en cualquier otra hora antes de las 21:00 o después de las 21:59
+                window.location.href = "https://sigradi.org/"; 
+            }
+        }
+        
+        window.onload = redirigir;
+    </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 20%;">
+    <p>Cargando el enlace correspondiente...</p>
+</body>
+</html>
