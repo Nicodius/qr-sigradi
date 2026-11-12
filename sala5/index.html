@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo a la sesión paralela de SiGraDi...</title>
+    <script>
+        function redirigir() {
+            const ahora = new Date();
+            const dia = ahora.getDate();
+            const mes = ahora.getMonth() + 1; // 1 = Enero, 11 = Noviembre
+            const anio = ahora.getFullYear();
+            
+            const hora = ahora.getHours();
+            const minutos = ahora.getMinutes();
+            const tiempoActual = (hora * 60) + minutos; 
+
+            // Bloque de horario único: 10:30 a 11:00
+            const enHorario = tiempoActual >= (10 * 60 + 30) && tiempoActual <= (11 * 60);
+
+            // Link por defecto si escanean fuera de horario
+            const linkPorDefecto = "https://sigradi.org/";
+
+            // Solo funciona en Noviembre 2026 dentro de las 10:30 a 11:00
+            if (anio === 2026 && mes === 11 && enHorario) {
+                
+                if (dia === 18) {
+                    // Día 1
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=70";
+                } 
+                else if (dia === 19) {
+                    // Día 2
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=71";
+                } 
+                else if (dia === 20) {
+                    // Día 3
+                    window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=72";
+                } 
+                else {
+                    window.location.href = linkPorDefecto;
+                }
+            } 
+            else {
+                window.location.href = linkPorDefecto;
+            }
+        }
+        
+        window.onload = redirigir;
+    </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 20%;">
+    <p>Cargando la sesión paralela correspondiente...</p>
+</body>
+</html>
