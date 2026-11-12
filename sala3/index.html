@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo a la sesión de SiGraDi...</title>
+    <script>
+        function redirigir() {
+            const ahora = new Date();
+            const dia = ahora.getDate();
+            const mes = ahora.getMonth() + 1; // 1 = Enero, 11 = Noviembre
+            const anio = ahora.getFullYear();
+            
+            const hora = ahora.getHours();
+            const minutos = ahora.getMinutes();
+            const tiempoActual = (hora * 60) + minutos; 
+
+            // Bloques de horario transformados a minutos para evitar fallos de cálculo
+            const bloque1 = tiempoActual >= (11 * 60) && tiempoActual <= (12 * 60 + 30); // 11:00 a 12:30
+            const bloque2 = tiempoActual >= (13 * 60 + 30) && tiempoActual <= (15 * 60); // 13:30 a 15:00
+            const bloque3 = tiempoActual >= (15 * 60 + 30) && tiempoActual <= (17 * 60); // 15:30 a 17:00
+
+            // Link por defecto si alguien escanea el QR en cualquier otro momento del año
+            const linkPorDefecto = "https://sigradi.org/";
+
+            // Solo funciona en Noviembre 2026
+            if (anio === 2026 && mes === 11) {
+                
+                // DIA 1: 18 de Noviembre
+                if (dia === 18) {
+                    if (bloque1) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=7";
+                    else if (bloque2) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=15";
+                    else if (bloque3) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=19";
+                    else window.location.href = linkPorDefecto;
+                }
+                
+                // DIA 2: 19 de Noviembre
+                else if (dia === 19) {
+                    if (bloque1) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=32";
+                    else if (bloque2) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=37";
+                    else if (bloque3) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=43";
+                    else window.location.href = linkPorDefecto;
+                }
+                
+                // DIA 3: 20 de Noviembre
+                else if (dia === 20) {
+                    if (bloque1) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=35";
+                    else if (bloque2) window.location.href = "https://submission2026.sigradi.org/openconf/modules/request.php?module=oc_program&action=page.php&id=49";
+                    else window.location.href = linkPorDefecto;
+                }
+                
+                else {
+                    window.location.href = linkPorDefecto;
+                }
+            } 
+            else {
+                window.location.href = linkPorDefecto;
+            }
+        }
+        
+        window.onload = redirigir;
+    </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 20%;">
+    <p>Cargando la sesión correspondiente...</p>
+</body>
+</html>
